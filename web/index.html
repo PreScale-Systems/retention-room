@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Retention Room — Cold Harbor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1B1D21; --panel:#22252A; --panel-2:#2A2E34; --line:#363A41; --line-2:#44494F;
+    --text:#E8E6E1; --text-2:#A7A9AE; --text-3:#6F7278;
+    --amber:#F5B83D; --amber-dim:rgba(245,184,61,.16);
+    --loss:#E5654B; --loss-dim:rgba(229,101,75,.18);
+    --rewatch:#5FB3F0;
+    --sans:'Manrope',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.5}
+  button{font:inherit;cursor:pointer;color:inherit;background:none;border:0}
+  button:focus-visible,input:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+
+  header{display:flex;align-items:center;gap:18px;padding:12px 20px;border-bottom:1px solid var(--line)}
+  .brand{font-weight:700;font-size:15px;letter-spacing:.01em}
+  .brand span{color:var(--text-3);font-weight:500;margin-left:10px}
+  .eps{display:flex;gap:2px;margin-left:auto;overflow:auto}
+  .eps button{padding:6px 10px;border-radius:6px;color:var(--text-2);font-weight:500;white-space:nowrap}
+  .eps button.on{background:var(--panel-2);color:var(--text)}
+  .eps button small{display:block;font-size:10.5px;color:var(--text-3);font-weight:400}
+
+  main{display:grid;grid-template-columns:minmax(0,1fr) 420px;height:calc(100vh - 53px)}
+  @media (max-width:1000px){main{grid-template-columns:1fr;height:auto}}
+
+  /* ---- room ---- */
+  #room{padding:18px 22px;overflow:auto;display:flex;flex-direction:column;gap:14px}
+  .titleRow{display:flex;align-items:baseline;gap:14px}
+  .titleRow h1{font-size:20px;font-weight:700;margin:0}
+  .titleRow .stat{color:var(--text-2)}
+  .titleRow .stat b{color:var(--text);font-weight:600}
+  .chartWrap{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 14px 8px;position:relative}
+  svg{display:block;width:100%;height:auto}
+  .band{fill:transparent;cursor:pointer}
+  .band.kind-exposition{fill:rgba(229,101,75,.05)}
+  .band.kind-credits{fill:rgba(255,255,255,.03)}
+  .band:hover,.band.hot{fill:var(--amber-dim)}
+  .band.flag{fill:var(--loss-dim)}
+  .bandLine{stroke:var(--line);stroke-width:1}
+  .curve{fill:none;stroke:var(--amber);stroke-width:2;stroke-linejoin:round}
+  .area{fill:url(#g)}
+  .seek{fill:var(--rewatch);opacity:.75}
+  .axis{fill:var(--text-3);font-size:10px;font-family:var(--mono)}
+  .playhead{stroke:var(--text);stroke-width:1;stroke-dasharray:3 3;pointer-events:none}
+  .tip{position:absolute;top:10px;left:14px;font-family:var(--mono);font-size:11.5px;color:var(--text-2);pointer-events:none}
+  .tip b{color:var(--text);font-weight:500}
+  .legend{display:flex;gap:16px;font-size:11.5px;color:var(--text-3);padding:4px 2px 0}
+  .legend i{display:inline-block;width:10px;height:3px;background:var(--amber);vertical-align:middle;margin-right:5px;border-radius:2px}
+  .legend i.s{background:var(--rewatch);height:8px;width:6px}
+  .legend i.f{background:var(--loss-dim);height:10px;width:10px;border:1px solid var(--loss)}
+
+  .scene{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:8px 20px;min-height:110px}
+  .scene .slug{font-family:var(--mono);font-size:12.5px;color:var(--amber);font-weight:500}
+  .scene .sum{color:var(--text);margin-top:4px}
+  .scene .ex{font-family:var(--mono);font-size:12px;color:var(--text-2);border-left:2px solid var(--line-2);padding-left:10px;margin-top:8px;white-space:pre-wrap}
+  .scene .nums{text-align:right;color:var(--text-2);font-size:12.5px;white-space:nowrap}
+  .scene .nums b{display:block;font-size:20px;color:var(--text);font-weight:600;font-family:var(--mono)}
+  .scene .nums .bad{color:var(--loss)}
+  .scene .empty{grid-column:1/-1;color:var(--text-3)}
+
+  .scenes{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:6px}
+  .sc{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 10px;text-align:left;font-size:12px;color:var(--text-2)}
+  .sc:hover,.sc.on{border-color:var(--amber);color:var(--text)}
+  .sc .k{font-family:var(--mono);font-size:10.5px;color:var(--text-3)}
+  .sc .l{float:right;font-family:var(--mono);font-size:11px}
+  .sc .l.bad{color:var(--loss)}
+
+  /* ---- chat ---- */
+  #chat{border-left:1px solid var(--line);display:flex;flex-direction:column;background:var(--bg)}
+  @media (max-width:1000px){#chat{border-left:0;border-top:1px solid var(--line);height:70vh}}
+  .msgs{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
+  .m{max-width:100%}
+  .m.user{align-self:flex-end;background:var(--panel-2);border-radius:12px 12px 2px 12px;padding:8px 12px;max-width:85%}
+  .m.tool{font-family:var(--mono);font-size:11.5px;background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  .m.tool .h{padding:6px 10px;color:var(--text-3);border-bottom:1px solid var(--line);display:flex;gap:8px;align-items:center}
+  .m.tool .h b{color:var(--text-2);font-weight:500}
+  .m.tool pre{margin:0;padding:8px 10px;white-space:pre-wrap;word-break:break-word;color:var(--text);max-height:180px;overflow:auto}
+  .m.tool .r{color:var(--text-3);padding:6px 10px;border-top:1px dashed var(--line);white-space:pre-wrap;word-break:break-word;max-height:90px;overflow:auto;display:none}
+  .m.tool.open .r{display:block}
+  .m.text{line-height:1.55}
+  .m.text .who{font-size:11px;color:var(--text-3);margin-bottom:2px;font-family:var(--mono)}
+  .m.text.editor{border-left:2px solid var(--amber);padding-left:12px}
+  .m.text p{margin:0 0 8px}
+  .m.text code{font-family:var(--mono);font-size:12px;background:var(--panel);padding:1px 4px;border-radius:3px}
+  .m.text pre{font-family:var(--mono);font-size:11.5px;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:8px;overflow:auto}
+  .m.text ul{padding-left:18px;margin:4px 0}
+  .m.err{color:var(--loss);font-size:12.5px}
+  .thinking{color:var(--text-3);font-size:12.5px;font-family:var(--mono)}
+  .thinking::after{content:'…';animation:dots 1.2s steps(3) infinite}
+  @keyframes dots{0%{content:''}33%{content:'.'}66%{content:'..'}100%{content:'...'}}
+  @media (prefers-reduced-motion:reduce){.thinking::after{animation:none}}
+  .ask{border-top:1px solid var(--line);padding:12px 14px 14px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+  .chips button{font-size:12px;color:var(--text-2);border:1px solid var(--line-2);border-radius:999px;padding:4px 10px}
+  .chips button:hover{color:var(--text);border-color:var(--text-2)}
+  .box{display:flex;gap:8px}
+  .box input{flex:1;background:var(--panel);border:1px solid var(--line-2);border-radius:8px;padding:10px 12px;color:var(--text);font:inherit}
+  .box button{background:var(--amber);color:#1B1D21;font-weight:700;border-radius:8px;padding:0 14px}
+  .box button:disabled{opacity:.4;cursor:default}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">RETENTION ROOM<span>Cold Harbor · season 1</span></div>
+  <nav class="eps" id="eps"></nav>
+</header>
+<main>
+  <section id="room">
+    <div class="titleRow"><h1 id="epTitle">—</h1><div class="stat" id="epStat"></div></div>
+    <div class="chartWrap">
+      <div class="tip" id="tip"></div>
+      <svg id="chart" viewBox="0 0 900 300" aria-label="Retention curve with scene bands"></svg>
+      <div class="legend"><span><i></i>viewers still watching</span><span><i class="s"></i>rewinds (where people go back to)</span><span><i class="f"></i>flagged by the analyst</span></div>
+    </div>
+    <div class="scene" id="scene"><div class="empty">Hover the curve or pick a scene.</div></div>
+    <div class="scenes" id="sceneList"></div>
+  </section>
+
+  <aside id="chat">
+    <div class="msgs" id="msgs">
+      <div class="m text"><div class="who">retention room</div>Ask why an episode loses people, what gets rewatched, or whether a drop is the story or the stream. Every answer shows the SQL it ran against ClickHouse.</div>
+    </div>
+    <div class="ask">
+      <div class="chips" id="chips"></div>
+      <div class="box"><input id="q" placeholder="Why does this episode lose people?" autocomplete="off"><button id="send">Ask</button></div>
+    </div>
+  </aside>
+</main>
+
+<script>
+const $=s=>document.querySelector(s);
+const st={eps:[],ep:null,curve:null,seeks:[],hover:null,pick:null,flag:new Set(),cid:null,busy:false};
+const fmt=s=>`${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}`;
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+const CHIPS=[
+  'Why does this episode lose people?',
+  'What do viewers rewatch most in this episode?',
+  'Is the drop at the top of the episode the story or the stream?',
+  'Which episode has the worst mid-episode drop this season?',
+  'How many finishers missed the post-credits scene in episode 8?'
+];
+$('#chips').innerHTML=CHIPS.map(c=>`<button>${esc(c)}</button>`).join('');
+$('#chips').querySelectorAll('button').forEach(b=>b.onclick=()=>{$('#q').value=b.textContent;ask();});
+
+async function init(){
+  st.eps=await (await fetch('/api/episodes')).json();
+  $('#eps').innerHTML=st.eps.map(e=>`<button data-ep="${e.episode}">E${e.episode} ${esc(e.title)}<small>${(e.completion*100).toFixed(0)}% finish</small></button>`).join('');
+  $('#eps').querySelectorAll('button').forEach(b=>b.onclick=()=>openEp(+b.dataset.ep));
+  openEp(4);
+}
+async function openEp(ep){
+  st.ep=ep; st.pick=null; st.hover=null; st.flag=new Set();
+  $('#eps').querySelectorAll('button').forEach(b=>b.classList.toggle('on',+b.dataset.ep===ep));
+  const [c,s]=await Promise.all([fetch(`/api/episodes/${ep}/curve`).then(r=>r.json()),fetch(`/api/episodes/${ep}/seeks`).then(r=>r.json())]);
+  st.curve=c; st.seeks=s;
+  const e=st.eps.find(x=>x.episode===ep);
+  $('#epTitle').textContent=`Episode ${ep} — ${e.title}`;
+  $('#epStat').innerHTML=`<b>${e.sessions.toLocaleString()}</b> sessions · <b>${(e.completion*100).toFixed(1)}%</b> reached the credits · ${fmt(e.runtime)} runtime`;
+  draw(); renderScene(null); renderSceneList();
+}
+
+function draw(){
+  const {points,scenes}=st.curve; const W=900,H=300,L=42,R=12,T=14,B=44; const T_end=scenes[scenes.length-1].end_sec;
+  const x=s=>L+(s/T_end)*(W-L-R), y=r=>T+(1-r)*(H-T-B-40);
+  const path=points.map((p,i)=>(i?'L':'M')+x(p[0]).toFixed(1)+' '+y(p[1]).toFixed(1)).join(' ');
+  const area=path+` L${x(points[points.length-1][0]).toFixed(1)} ${y(0)} L${x(0)} ${y(0)} Z`;
+  const maxSeek=Math.max(1,...st.seeks.map(s=>s.seeks));
+  let svg=`<defs><linearGradient id="g" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#F5B83D" stop-opacity=".22"/><stop offset="1" stop-color="#F5B83D" stop-opacity="0"/></linearGradient></defs>`;
+  svg+=scenes.map(s=>`<rect class="band kind-${s.kind} ${st.flag.has(s.scene_number)?'flag':''} ${st.pick===s.scene_number?'hot':''}" data-n="${s.scene_number}" x="${x(s.start_sec)}" y="${T}" width="${x(s.end_sec)-x(s.start_sec)}" height="${H-T-B}"/><line class="bandLine" x1="${x(s.start_sec)}" x2="${x(s.start_sec)}" y1="${T}" y2="${H-B}"/>`).join('');
+  for(const g of [1,.75,.5,.25]) svg+=`<line x1="${L}" x2="${W-R}" y1="${y(g)}" y2="${y(g)}" stroke="#363A41" stroke-dasharray="2 4"/><text class="axis" x="${L-6}" y="${y(g)+3}" text-anchor="end">${g*100}%</text>`;
+  svg+=`<path class="area" d="${area}"/><path class="curve" d="${path}"/>`;
+  svg+=st.seeks.map(s=>`<rect class="seek" x="${x(s.second)}" y="${H-B-38+(1-s.seeks/maxSeek)*36}" width="${Math.max(1.2,x(10)-x(0))}" height="${(s.seeks/maxSeek)*36+1}"/>`).join('');
+  for(let m=0;m<=T_end;m+=300) svg+=`<text class="axis" x="${x(m)}" y="${H-B+14}" text-anchor="middle">${fmt(m)}</text>`;
+  svg+=scenes.map(s=>`<text class="axis" x="${(x(s.start_sec)+x(s.end_sec))/2}" y="${H-B+30}" text-anchor="middle" fill="${st.flag.has(s.scene_number)?'#E5654B':'#6F7278'}">${s.scene_number}</text>`).join('');
+  if(st.hover!=null) svg+=`<line class="playhead" x1="${x(st.hover)}" x2="${x(st.hover)}" y1="${T}" y2="${H-B}"/>`;
+  $('#chart').innerHTML=svg;
+  const el=$('#chart');
+  el.onmousemove=ev=>{const r=el.getBoundingClientRect();const sx=(ev.clientX-r.left)/r.width*W;const sec=Math.max(0,Math.min(T_end,(sx-L)/(W-L-R)*T_end));st.hover=sec;draw();
+    const p=points.reduce((a,b)=>Math.abs(b[0]-sec)<Math.abs(a[0]-sec)?b:a);const sc=scenes.find(s=>sec>=s.start_sec&&sec<s.end_sec);
+    $('#tip').innerHTML=`<b>${fmt(sec)}</b> · ${(p[1]*100).toFixed(1)}% watching${sc?` · scene ${sc.scene_number} ${esc(sc.slugline)}`:''}`; if(sc&&st.pick==null) renderScene(sc);};
+  el.onmouseleave=()=>{st.hover=null;$('#tip').innerHTML='';draw(); if(st.pick==null) renderScene(null);};
+  el.querySelectorAll('.band').forEach(b=>b.onclick=()=>{const n=+b.dataset.n; st.pick=st.pick===n?null:n; draw(); renderScene(st.pick?scenes.find(s=>s.scene_number===n):null); renderSceneList();});
+}
+function renderScene(s){
+  if(!s){$('#scene').innerHTML='<div class="empty">Hover the curve or pick a scene.</div>';return;}
+  const lpm=(s.loss_per_minute*100), bad=lpm>1.2;
+  $('#scene').innerHTML=`<div><div class="slug">${s.scene_number} · ${esc(s.slugline)} · ${esc(s.kind)} · ${fmt(s.start_sec)}–${fmt(s.end_sec)}</div><div class="sum">${esc(s.summary||'')}</div>${s.script_excerpt?`<div class="ex">${esc(s.script_excerpt)}</div>`:''}</div>
+  <div class="nums"><b class="${bad?'bad':''}">${lpm.toFixed(2)} pp/min</b>audience lost per minute<br><b>${(s.completion*100).toFixed(1)}%</b>of those who reached it stayed to the end</div>`;
+}
+function renderSceneList(){
+  $('#sceneList').innerHTML=st.curve.scenes.map(s=>`<button class="sc ${st.pick===s.scene_number?'on':''}" data-n="${s.scene_number}"><span class="l ${s.loss_per_minute*100>1.2?'bad':''}">${(s.loss_per_minute*100).toFixed(1)}</span><div class="k">${s.scene_number} · ${esc(s.kind)} · ${fmt(s.start_sec)}</div>${esc(s.slugline)}</button>`).join('');
+  $('#sceneList').querySelectorAll('.sc').forEach(b=>b.onclick=()=>{const n=+b.dataset.n; st.pick=st.pick===n?null:n; draw(); renderScene(st.pick?st.curve.scenes.find(s=>s.scene_number===n):null); renderSceneList();});
+}
+
+// ---- chat ----
+function add(html,cls){const d=document.createElement('div');d.className='m '+cls;d.innerHTML=html;$('#msgs').appendChild(d);$('#msgs').scrollTop=1e9;return d;}
+function md(t){ // small markdown: fences, bullets, bold, inline code, paragraphs
+  t=esc(t).replace(/```(\w+)?\n([\s\S]*?)```/g,(m,l,c)=>`<pre>${c}</pre>`);
+  t=t.replace(/`([^`]+)`/g,'<code>$1</code>').replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>');
+  t=t.replace(/^(?:[-*] .*(?:\n|$))+/gm,b=>'<ul>'+b.trim().split('\n').map(l=>'<li>'+l.replace(/^[-*] /,'')+'</li>').join('')+'</ul>');
+  return t.split(/\n{2,}/).map(p=>p.startsWith('<')?p:`<p>${p.replace(/\n/g,'<br>')}</p>`).join('');
+}
+async function ask(){
+  const q=$('#q').value.trim(); if(!q||st.busy) return;
+  st.busy=true; $('#send').disabled=true; $('#q').value='';
+  add(esc(q),'user'); const th=add('analyst querying ClickHouse','thinking');
+  let findings='';
+  try{
+    const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q,conversation_id:st.cid,episode:st.ep})});
+    const rd=r.body.getReader(); const dec=new TextDecoder(); let buf='';
+    while(true){const {value,done}=await rd.read(); if(done) break; buf+=dec.decode(value,{stream:true});
+      let i; while((i=buf.indexOf('\n\n'))>=0){const line=buf.slice(0,i).trim(); buf=buf.slice(i+2); if(!line.startsWith('data:')) continue; const e=JSON.parse(line.slice(5));
+        if(e.kind==='start') st.cid=e.conversation_id;
+        else if(e.kind==='tool_call'){const sql=e.args.query||JSON.stringify(e.args); const d=add(`<div class="h"><b>${esc(e.name)}</b> via mcp-clickhouse</div><pre>${esc(sql)}</pre><div class="r"></div>`,'tool'); d.onclick=()=>d.classList.toggle('open'); th.remove(); $('#msgs').appendChild(th);}
+        else if(e.kind==='tool_result'){const last=[...document.querySelectorAll('.m.tool')].pop(); if(last) last.querySelector('.r').textContent=e.preview;}
+        else if(e.kind==='text'){ if(e.agent==='analyst'){findings=e.text; add(`<div class="who">analyst</div>${md(e.text)}`,'text'); th.textContent='editor writing the note';} else add(`<div class="who">editor</div>${md(e.text)}`,'text editor'); }
+        else if(e.kind==='error') add(esc(e.error),'err');
+      }}
+  }catch(err){add(esc(err.message),'err');}
+  th.remove(); st.busy=false; $('#send').disabled=false;
+  // flag the scenes the analyst named on the chart
+  const nums=[...findings.matchAll(/scene[_ ]?(?:number\s*)?(\d{1,2})/gi)].map(m=>+m[1]);
+  if(nums.length){st.flag=new Set(nums); draw();}
+}
+$('#send').onclick=ask; $('#q').addEventListener('keydown',e=>{if(e.key==='Enter') ask();});
+init();
+</script>
+</body>
+</html>
