@@ -25,6 +25,6 @@ Ingest real QoE telemetry via ClickHouse's Kafka engine, scene boundaries from E
 google-adk, google-genai, Gemini 2.5 Pro, Vertex AI, Cloud Run, Secret Manager, ClickHouse Cloud, mcp-clickhouse, clickhouse-connect, FastAPI, NumPy
 
 ## Links
-- Hosted app: <CLOUD RUN URL>
-- Repo: <GITHUB URL>
+- Hosted app: https://retention-room-769027363263.us-central1.run.app
+- Repo: https://github.com/PreScale-Systems/retention-room
 - Video: <YOUTUBE URL>

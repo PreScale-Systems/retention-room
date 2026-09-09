@@ -1,6 +1,7 @@
 __pycache__/
 *.pyc
 .venv/
+.venv-mcp/
 .env
 jobs/
 .DS_Store
