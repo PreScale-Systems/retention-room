@@ -27,4 +27,4 @@ google-adk, google-genai, Gemini 2.5 Pro, Vertex AI, Cloud Run, Secret Manager, 
 ## Links
 - Hosted app: https://retention-room-769027363263.us-central1.run.app
 - Repo: https://github.com/PreScale-Systems/retention-room
-- Video: <YOUTUBE URL>
+- Video: https://youtu.be/u3jBQJYQ3lM
