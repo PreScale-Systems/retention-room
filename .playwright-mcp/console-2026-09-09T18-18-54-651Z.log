@@ -1,0 +1,3 @@
+[     203ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8081/favicon.ico:0
+[     718ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:8081/api/episodes/4/curve:0
+[     719ms] Unexpected token 'I', "Internal S"... is not valid JSON

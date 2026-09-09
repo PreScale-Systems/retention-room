@@ -37,7 +37,7 @@ Runtime integrations, in code:
 
 An original eight-episode coastal mystery (`data/show.py`): 107 scenes with sluglines, summaries and script excerpts. The audience is simulated (`scripts/seed.py`) from a per-second quit hazard shaped by scene kind and a handful of story-driven seeds, so the data tells a story an editor can act on:
 
-- **Ep 4, scene 13** — nine minutes of dredging-permit history right after June's confession. Retention falls from 77% to 59% inside the scene; the confession before it is the episode's top rewind.
+- **Ep 4, scene 13** — nine minutes of dredging-permit history right after June's confession. Retention falls from 76% to 59% inside the scene; the confession before it is the episode's top rewind.
 - **Ep 1, scene 9** — the council meeting; the pilot's mid-episode bleed.
 - **Ep 5, 11:30–13:00** — looks like a story drop; is actually `smart_tv` / `LATAM` / `edge-c` rebuffering. The analyst is instructed to check this before blaming the scene.
 - **Ep 8** — 62% of finishers stop at the end credits and miss the post-credits tag.

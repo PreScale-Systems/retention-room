@@ -1,0 +1,50 @@
+[
+  {
+    "id": "the-room",
+    "vo_text": "Editors get audience retention as a number on a dashboard. Data teams don't read scripts. So when an episode bleeds viewers at minute thirty-four, nobody in the edit knows which scene lost them. This is episode four of Cold Harbor — its retention curve, with the script's scene boundaries laid right over it. That's Retention Room: the data and the script, in the same room.",
+    "on_screen": "Real app, episode 4 default view: retention curve with scene bands, rewind hotspots underneath. Slow push-in; title beat on 'Retention Room.'",
+    "target_seconds": 27
+  },
+  {
+    "id": "hover-the-script",
+    "vo_text": "Hover the curve, and you're reading the script at that exact second. Here is June's confession — and here's the scene that comes right after it. Remember that.",
+    "on_screen": "Cursor hovers scene 12 into 13; scene card updates live — June's confession, then the scene after. Hold on the scene 13 card.",
+    "target_seconds": 12
+  },
+  {
+    "id": "ask-the-agent",
+    "vo_text": "Now ask it: why does this episode lose people? Those cards streaming in are a Gemini agent — built with Google's ADK — sending real SQL to ClickHouse Cloud through the official MCP server, every query on screen as it runs. It follows a fixed procedure: rank every scene by loss per minute, find the steepest sixty seconds, and — before it's allowed to blame the writing — break the exits down by device, region, and CDN, and check for rebuffering.",
+    "on_screen": "Type the question; run_query tool cards stream in with real SQL visible. Expand one card to show rows. Keep SQL legible — required-tech beat.",
+    "target_seconds": 32
+  },
+  {
+    "id": "ep4-verdict",
+    "vo_text": "The verdict comes back. Scene thirteen: nine minutes of dredging-permit history, dropped immediately after June's confession. Seventy-six percent of the audience watching going in — fifty-nine coming out. The delivery checks are clean. This is a story problem, and the fix is a trim: thirty to forty seconds off the monologue.",
+    "on_screen": "Analyst findings arrive; scene 13 flags red on the chart. Punch in on scene 13's band; overlay tracked callouts '76%' at the scene entry and '59%' at the exit (real values from scene_completion), timed to the VO. The number must be on screen, not only in the ear. Proof moment one — land it hard.",
+    "target_seconds": 20
+  },
+  {
+    "id": "editor-note",
+    "vo_text": "A second agent — the editor — turns those findings into a note you can take into the cutting room: trim the permit scene, move the history where it can breathe, and since the audience keeps rewinding to the reveals, put a rewatch hotspot in the previously-on. The audience already told you what they love.",
+    "on_screen": "Editor agent's note streams in. Slow scroll; highlight 'top rewind' and the previously-on suggestion as VO hits them.",
+    "target_seconds": 22
+  },
+  {
+    "id": "ep5-refusal",
+    "vo_text": "Episode five has a drop that looks exactly the same. Is it the story, or the stream? The agent runs the same checks — and this time it refuses to blame the writing. The exits are smart TVs, in Latin America, on a single CDN edge, rebuffering. Verdict: delivery incident. Hand it to streaming ops, and don't touch the cut. [PAUSE 1.2s] That's the difference between a dashboard and an analyst.",
+    "on_screen": "Switch to ep 5; ask 'Is the drop between 11:30 and 12:00 the story or the stream?' (exact phrasing matters — vaguer wording sends the live agent to the wrong minute) Show the drop, then device/region/CDN breakdown rows. Hold on the agent's 'delivery incident — do not recut' verdict, static, for a full beat of silence. Only then the final VO line, over the held frame. Proof moment two — marquee beat.",
+    "target_seconds": 31
+  },
+  {
+    "id": "under-the-hood",
+    "vo_text": "Under the hood: twenty-three million playback events across sixty thousand pilot sessions, in ClickHouse Cloud. Materialized views keep exits, rewinds, and rebuffers pre-aggregated, so per-second retention is a millisecond query. And the whole thing is one ADK agent pipeline on Cloud Run.",
+    "on_screen": "Repo tour: sql/schema.sql materialized views, then agent/pipeline.py MCPToolset wiring. Two clean holds, real code.",
+    "target_seconds": 18
+  },
+  {
+    "id": "which-scene-lost-them",
+    "vo_text": "Retention Room. Which scene lost them.",
+    "on_screen": "Ep 4 chart with scene 13 flagged red; hold, then title card 'Retention Room — which scene lost them.' Beat of silence.",
+    "target_seconds": 6
+  }
+]

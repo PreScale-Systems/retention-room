@@ -1,0 +1,19 @@
+WARNING: Your active project does not match the quota project in your local Application Default Credentials file. This might result in unexpected quota issues.
+
+To update your Application Default Credentials quota project, use the `gcloud auth application-default set-quota-project` command.
+Updated property [core/project].
+Operation "operations/acat.p2-769027363263-ec1b03bb-8a5f-4fbe-adf7-6e2a7da8d78b" finished successfully.
+Updated IAM policy for project [proofline-hackathon-26].
+Updated IAM policy for project [proofline-hackathon-26].
+Building using Dockerfile and deploying container to Cloud Run service [[1mretention-room[m] in project [[1mproofline-hackathon-26[m] region [[1mus-central1[m]
+Building and deploying new service...
+Validating configuration....................done
+Uploading sources................................done
+Building Container...............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................done
+Setting IAM Policy........................................done
+Creating Revision........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................done
+Routing traffic.....done
+Done.
+Service [[1mretention-room[m] revision [[1mretention-room-00001-pvr[m] has been deployed and is serving [1m100[m percent of traffic.
+Service URL: [1mhttps://retention-room-769027363263.us-central1.run.app[m
+https://retention-room-gwjm7k5b2a-uc.a.run.app

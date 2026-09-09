@@ -1,0 +1,177 @@
+- generic [active] [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - generic [ref=f1e3]: RETENTION ROOMCold Harbor · season 1
+    - navigation [ref=f1e33]:
+      - button "E1 Slack Tide 62% finish" [ref=f1e34] [cursor=pointer]:
+        - text: E1 Slack Tide
+        - generic [ref=f1e35]: 62% finish
+      - button "E2 The Ledger 72% finish" [ref=f1e36] [cursor=pointer]:
+        - text: E2 The Ledger
+        - generic [ref=f1e37]: 72% finish
+      - button "E3 Dead Reckoning 64% finish" [ref=f1e38] [cursor=pointer]:
+        - text: E3 Dead Reckoning
+        - generic [ref=f1e39]: 64% finish
+      - button "E4 Harbor Deepening 58% finish" [ref=f1e40] [cursor=pointer]:
+        - text: E4 Harbor Deepening
+        - generic [ref=f1e41]: 58% finish
+      - button "E5 Edge of the Chart 74% finish" [ref=f1e42] [cursor=pointer]:
+        - text: E5 Edge of the Chart
+        - generic [ref=f1e43]: 74% finish
+      - button "E6 The Other Boat 76% finish" [ref=f1e44] [cursor=pointer]:
+        - text: E6 The Other Boat
+        - generic [ref=f1e45]: 76% finish
+      - button "E7 Fourteen Feet 77% finish" [ref=f1e46] [cursor=pointer]:
+        - text: E7 Fourteen Feet
+        - generic [ref=f1e47]: 77% finish
+      - button "E8 High Water 79% finish" [ref=f1e48] [cursor=pointer]:
+        - text: E8 High Water
+        - generic [ref=f1e49]: 79% finish
+  - main [ref=f1e4]:
+    - generic [ref=f1e5]:
+      - generic [ref=f1e6]:
+        - heading "Episode 4 — Harbor Deepening" [level=1] [ref=f1e50]
+        - generic [ref=f1e51]: 40,800 sessions · 58.4% reached the credits · 48:20 runtime
+      - generic [ref=f1e8]:
+        - generic: 36:39 · 72.1% watching · scene 13 INT. HARBORMASTER'S OFFICE - NIGHT
+        - img "Retention curve with scene bands" [ref=f1e9]:
+          - generic [ref=f1e52] [cursor=pointer]
+          - generic [ref=f1e53] [cursor=pointer]
+          - generic [ref=f1e54] [cursor=pointer]
+          - generic [ref=f1e55] [cursor=pointer]
+          - generic [ref=f1e56] [cursor=pointer]
+          - generic [ref=f1e57] [cursor=pointer]
+          - generic [ref=f1e58] [cursor=pointer]
+          - generic [ref=f1e59] [cursor=pointer]
+          - generic [ref=f1e60] [cursor=pointer]
+          - generic [ref=f1e61] [cursor=pointer]
+          - generic [ref=f1e62] [cursor=pointer]
+          - generic [ref=f1e63] [cursor=pointer]
+          - generic [ref=f1e64] [cursor=pointer]
+          - generic [ref=f1e65] [cursor=pointer]
+          - generic [ref=f1e66] [cursor=pointer]
+          - generic [ref=f1e67]: 100%
+          - generic [ref=f1e68]: 75%
+          - generic [ref=f1e69]: 50%
+          - generic [ref=f1e70]: 25%
+          - generic [ref=f1e361]: 0:00
+          - generic [ref=f1e362]: 5:00
+          - generic [ref=f1e363]: 10:00
+          - generic [ref=f1e364]: 15:00
+          - generic [ref=f1e365]: 20:00
+          - generic [ref=f1e366]: 25:00
+          - generic [ref=f1e367]: 30:00
+          - generic [ref=f1e368]: 35:00
+          - generic [ref=f1e369]: 40:00
+          - generic [ref=f1e370]: 45:00
+          - generic [ref=f1e371]: "1"
+          - generic [ref=f1e372]: "2"
+          - generic [ref=f1e373]: "3"
+          - generic [ref=f1e374]: "4"
+          - generic [ref=f1e375]: "5"
+          - generic [ref=f1e376]: "6"
+          - generic [ref=f1e377]: "7"
+          - generic [ref=f1e378]: "8"
+          - generic [ref=f1e379]: "9"
+          - generic [ref=f1e380]: "10"
+          - generic [ref=f1e381]: "11"
+          - generic [ref=f1e382]: "12"
+          - generic [ref=f1e383]: "13"
+          - generic [ref=f1e384]: "14"
+          - generic [ref=f1e385]: "15"
+        - generic [ref=f1e10]:
+          - generic [ref=f1e11]: viewers still watching
+          - generic [ref=f1e13]: rewinds (where people go back to)
+          - generic [ref=f1e15]: flagged by the analyst
+      - generic [ref=f1e17]:
+        - generic [ref=f1e386]:
+          - generic [ref=f1e387]: 13 · INT. HARBORMASTER'S OFFICE - NIGHT · exposition · 34:10–43:10
+          - generic [ref=f1e388]: "Gil lays out the entire dredging permit history: the 2019 application, the environmental review, the quota transfer clause, who signed what and when."
+          - generic [ref=f1e389]: "GIL: The 2019 application was denied. Then in 2021 it comes back with a quota transfer clause nobody asked for. Now look at the environmental review — see the date? Same week the county changed assessors. And here —"
+        - generic [ref=f1e390]:
+          - generic [ref=f1e391]: 2.43 pp/min
+          - text: audience lost per minute
+          - generic [ref=f1e392]: 78.2%
+          - text: of those who reached it stayed to the end
+      - generic [ref=f1e393]:
+        - button "0.3 1 · flashback · 0:00 EXT. BELL FISHERIES - NIGHT (FLASHBACK)" [ref=f1e394] [cursor=pointer]:
+          - generic [ref=f1e395]: "0.3"
+          - generic [ref=f1e396]: 1 · flashback · 0:00
+          - text: EXT. BELL FISHERIES - NIGHT (FLASHBACK)
+        - button "2.9 2 · credits · 2:20 TITLES" [ref=f1e397] [cursor=pointer]:
+          - generic [ref=f1e398]: "2.9"
+          - generic [ref=f1e399]: 2 · credits · 2:20
+          - text: TITLES
+        - button "1.9 3 · dialogue · 3:20 INT. KELLEHER HOUSE - DAY" [ref=f1e400] [cursor=pointer]:
+          - generic [ref=f1e401]: "1.9"
+          - generic [ref=f1e402]: 3 · dialogue · 3:20
+          - text: INT. KELLEHER HOUSE - DAY
+        - button "0.5 4 · dialogue · 6:30 INT. BAIT SHOP - DAY" [ref=f1e403] [cursor=pointer]:
+          - generic [ref=f1e404]: "0.5"
+          - generic [ref=f1e405]: 4 · dialogue · 6:30
+          - text: INT. BAIT SHOP - DAY
+        - button "0.2 5 · action · 10:00 INT. NORA'S ROOM - DAY" [ref=f1e406] [cursor=pointer]:
+          - generic [ref=f1e407]: "0.2"
+          - generic [ref=f1e408]: 5 · action · 10:00
+          - text: INT. NORA'S ROOM - DAY
+        - button "0.4 6 · dialogue · 13:00 EXT. HARBOR - DAY" [ref=f1e409] [cursor=pointer]:
+          - generic [ref=f1e410]: "0.4"
+          - generic [ref=f1e411]: 6 · dialogue · 13:00
+          - text: EXT. HARBOR - DAY
+        - button "0.4 7 · dialogue · 16:50 INT. DINER - DAY" [ref=f1e412] [cursor=pointer]:
+          - generic [ref=f1e413]: "0.4"
+          - generic [ref=f1e414]: 7 · dialogue · 16:50
+          - text: INT. DINER - DAY
+        - button "0.5 8 · dialogue · 20:10 INT. BELL FISHERIES - OFFICE - DAY" [ref=f1e415] [cursor=pointer]:
+          - generic [ref=f1e416]: "0.5"
+          - generic [ref=f1e417]: 8 · dialogue · 20:10
+          - text: INT. BELL FISHERIES - OFFICE - DAY
+        - button "0.2 9 · action · 23:00 EXT. KELLEHER HOUSE - DAY" [ref=f1e418] [cursor=pointer]:
+          - generic [ref=f1e419]: "0.2"
+          - generic [ref=f1e420]: 9 · action · 23:00
+          - text: EXT. KELLEHER HOUSE - DAY
+        - button "0.5 10 · dialogue · 26:10 INT. KELLEHER HOUSE - KITCHEN - NIGHT" [ref=f1e421] [cursor=pointer]:
+          - generic [ref=f1e422]: "0.5"
+          - generic [ref=f1e423]: 10 · dialogue · 26:10
+          - text: INT. KELLEHER HOUSE - KITCHEN - NIGHT
+        - button "0.2 11 · action · 29:30 EXT. BREAKWATER - NIGHT" [ref=f1e424] [cursor=pointer]:
+          - generic [ref=f1e425]: "0.2"
+          - generic [ref=f1e426]: 11 · action · 29:30
+          - text: EXT. BREAKWATER - NIGHT
+        - button "0.1 12 · reveal · 32:10 INT. KELLEHER HOUSE - PORCH - NIGHT" [ref=f1e427] [cursor=pointer]:
+          - generic [ref=f1e428]: "0.1"
+          - generic [ref=f1e429]: 12 · reveal · 32:10
+          - text: INT. KELLEHER HOUSE - PORCH - NIGHT
+        - button "2.4 13 · exposition · 34:10 INT. HARBORMASTER'S OFFICE - NIGHT" [ref=f1e430] [cursor=pointer]:
+          - generic [ref=f1e431]: "2.4"
+          - generic [ref=f1e432]: 13 · exposition · 34:10
+          - text: INT. HARBORMASTER'S OFFICE - NIGHT
+        - button "0.5 14 · action · 43:10 EXT. HARBOR - NIGHT" [ref=f1e433] [cursor=pointer]:
+          - generic [ref=f1e434]: "0.5"
+          - generic [ref=f1e435]: 14 · action · 43:10
+          - text: EXT. HARBOR - NIGHT
+        - button "35.3 15 · credits · 45:30 END CREDITS" [ref=f1e436] [cursor=pointer]:
+          - generic [ref=f1e437]: "35.3"
+          - generic [ref=f1e438]: 15 · credits · 45:30
+          - text: END CREDITS
+    - complementary [ref=f1e19]:
+      - generic [ref=f1e20]:
+        - generic [ref=f1e21]:
+          - generic [ref=f1e22]: retention room
+          - text: Ask why an episode loses people, what gets rewatched, or whether a drop is the story or the stream. Every answer shows the SQL it ran against ClickHouse.
+        - generic [ref=f1e439]: Why does this episode lose people?
+        - generic [ref=f1e440]:
+          - generic [ref=f1e441]:
+            - generic [ref=f1e442]: run_query
+            - text: via mcp-clickhouse
+          - generic [ref=f1e443]: SELECT * FROM retention.scene_completion WHERE episode = 4 ORDER BY loss_per_minute DESC LIMIT 5
+        - generic [ref=f1e444]: analyst querying ClickHouse..
+      - generic [ref=f1e23]:
+        - generic [ref=f1e24]:
+          - button "Why does this episode lose people?" [ref=f1e25] [cursor=pointer]
+          - button "What do viewers rewatch most in this episode?" [ref=f1e26] [cursor=pointer]
+          - button "Is the drop at the top of the episode the story or the stream?" [ref=f1e27] [cursor=pointer]
+          - button "Which episode has the worst mid-episode drop this season?" [ref=f1e28] [cursor=pointer]
+          - button "How many finishers missed the post-credits scene in episode 8?" [ref=f1e29] [cursor=pointer]
+        - generic [ref=f1e30]:
+          - textbox "Why does this episode lose people?" [ref=f1e31]
+          - button "Ask" [disabled] [ref=f1e32]

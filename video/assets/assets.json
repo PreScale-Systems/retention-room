@@ -1,0 +1,57 @@
+[
+  {
+    "file": "hero-ep4-curve.png",
+    "what": "Episode 4 'Harbor Deepening' open at 1920x1080: full retention curve with scene bands, rewind spike at ~33:00 (June's confession), scene-card grid below, empty chat panel on the right. 40,800 sessions / 58.4% finish stats in the header.",
+    "good_for": "Hero / establishing shot of the app; intro scene; any moment the VO introduces the retention room."
+  },
+  {
+    "file": "hover-scene12.png",
+    "what": "Ep4 view with the cursor hovering INSIDE scene 12 — June's confession, the 'reveal'. Dashed playhead at 33:09 sitting right on the blue rewind spike, tooltip reads '33:09 · 75.6% watching · scene 12 INT. KELLEHER HOUSE - PORCH - NIGHT', and the scene card below is POPULATED: '12 · INT. KELLEHER HOUSE - PORCH - NIGHT · reveal · 32:10-34:10', summary 'June confesses: she saw the boat that night from the porch. She saw two boats. She went back to bed.', script excerpt 'JUNE: I saw two boats. I saw his and I saw the other one and I went back to bed, Nora. I went back to bed.', 0.10 pp/min audience lost, 99.8% stayed to the end. Chat panel empty.",
+    "good_for": "The 'hover-the-script' beat — the script at this second. Pairs with hover-scene13.png as the before/after: the reveal people rewind (99.8%, 0.10 pp/min) vs the exposition that loses them (78.2%, 2.43 pp/min). Fixes the P0 where hover-the-script pointed at an empty placeholder card."
+  },
+  {
+    "file": "hover-scene13.png",
+    "what": "Same ep4 view with the cursor hovering inside scene 13 (the permit-exposition scene after June's confession). Dashed playhead at 36:39, tooltip reads '36:39 · 72.1% watching · scene 13 INT. HARBORMASTER'S OFFICE - NIGHT', and the scene card shows the slugline, Gil's script excerpt, 2.43 pp/min audience loss (red) and 78.2% completion.",
+    "good_for": "The 'which scene lost them?' beat; zoom on the scene card or tooltip; showing script + numbers side by side."
+  },
+  {
+    "file": "chat-question-typed.png",
+    "what": "Ep4 view with 'Why does this episode lose people?' typed into the chat input (input focused, amber Ask button), question not yet submitted. Hover tooltip on scene 13 still visible on the chart.",
+    "good_for": "The moment before the agent runs; typing animation reference; cut right before the SQL stream starts."
+  },
+  {
+    "file": "chat-tool-cards.png",
+    "what": "MID-STREAM: four run_query tool cards ('run_query via mcp-clickhouse') stacked in the chat, each showing real SQL (scene_completion by loss_per_minute, retention drop window 2050-2590, exits by device/region/cdn, rebuffers by minute) with 'analyst querying ClickHouse...' thinking indicator at the bottom. Left side still shows the ep4 curve and scene 13 card.",
+    "good_for": "MARQUEE: the agent visibly querying ClickHouse; pan/scroll over the SQL; proof every answer shows its SQL."
+  },
+  {
+    "file": "chat-tool-expanded.png",
+    "what": "Two run_query tool cards expanded to show result rows under the SQL: retention_drop_60s -> [[2531, 0.6159...]] and exits by device/region/cdn -> smart_tv/edge-a/edge-b rows. NOTE: left panel shows episode 5 (captured after switching); crop to the right chat column when using.",
+    "good_for": "Close-up crop of a tool card with SQL + JSON result rows; 'real queries, real rows' beat."
+  },
+  {
+    "file": "chat-findings.png",
+    "what": "Analyst findings rendered in the chat: 'Episode 4 loses viewers during a long exposition scene... 81% to 20%... This is a story problem', scene 12/13 summaries with script excerpts, rewatch hotspots. Scene 13's band is flagged red on the chart ('flagged by the analyst').",
+    "good_for": "The verdict beat for ep4; showing the chart band turn red as the analyst names the scene."
+  },
+  {
+    "file": "chat-editor-note.png",
+    "what": "Editor agent's recut note (amber-left-border 'editor' message): losing the audience in the harbormaster's office, story problem not delivery, recommends trimming Gil's monologue 30-40 seconds / restructuring the exposition, notes the permit scene is also a rewatch hotspot. Flagged scene 13 still red on the chart.",
+    "good_for": "The 'editor writes the recut note' beat; final ep4 recommendation."
+  },
+  {
+    "file": "ep5-curve.png",
+    "what": "Episode 5 'Edge of the Chart' open: its retention curve and scene grid (37,800 sessions, 74.4% finish, 41:00 runtime). Chat panel on the right still carries the earlier ep4 analysis.",
+    "good_for": "The episode switch beat; establishing ep5 before the delivery-incident question."
+  },
+  {
+    "file": "ep5-verdict.png",
+    "what": "MARQUEE: user question 'Is the drop between 11:30 and 12:00 the story or the stream?' with the analyst's answer: 'a delivery problem... retention falls from 84% to nearly zero... concentrated on smart TVs in Latin America using the edge-c CDN. This is a streaming issue, not a story problem', plus rebuffering spike explanation and scene context. Editor note below (off-screen) says hand it to streaming ops, don't recut.",
+    "good_for": "The agent refusing to blame the writing — CDN/LATAM verdict; the climax of the demo."
+  },
+  {
+    "file": "episodes-rail.png",
+    "what": "The header episode selector rail cropped exactly (1920x74): RETENTION ROOM brand + E1-E8 buttons with titles and finish percentages, E5 highlighted.",
+    "good_for": "UI strip for transitions, lower-thirds, or an episode-switch motion element."
+  }
+]

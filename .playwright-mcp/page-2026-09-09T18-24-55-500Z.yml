@@ -1,0 +1,247 @@
+- generic [active] [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - generic [ref=f1e3]: RETENTION ROOMCold Harbor · season 1
+    - navigation [ref=f1e33]:
+      - button "E1 Slack Tide 62% finish" [ref=f1e34] [cursor=pointer]:
+        - text: E1 Slack Tide
+        - generic [ref=f1e35]: 62% finish
+      - button "E2 The Ledger 72% finish" [ref=f1e36] [cursor=pointer]:
+        - text: E2 The Ledger
+        - generic [ref=f1e37]: 72% finish
+      - button "E3 Dead Reckoning 64% finish" [ref=f1e38] [cursor=pointer]:
+        - text: E3 Dead Reckoning
+        - generic [ref=f1e39]: 64% finish
+      - button "E4 Harbor Deepening 58% finish" [ref=f1e40] [cursor=pointer]:
+        - text: E4 Harbor Deepening
+        - generic [ref=f1e41]: 58% finish
+      - button "E5 Edge of the Chart 74% finish" [ref=f1e42] [cursor=pointer]:
+        - text: E5 Edge of the Chart
+        - generic [ref=f1e43]: 74% finish
+      - button "E6 The Other Boat 76% finish" [ref=f1e44] [cursor=pointer]:
+        - text: E6 The Other Boat
+        - generic [ref=f1e45]: 76% finish
+      - button "E7 Fourteen Feet 77% finish" [ref=f1e46] [cursor=pointer]:
+        - text: E7 Fourteen Feet
+        - generic [ref=f1e47]: 77% finish
+      - button "E8 High Water 79% finish" [ref=f1e48] [cursor=pointer]:
+        - text: E8 High Water
+        - generic [ref=f1e49]: 79% finish
+  - main [ref=f1e4]:
+    - generic [ref=f1e5]:
+      - generic [ref=f1e6]:
+        - heading "Episode 5 — Edge of the Chart" [level=1] [ref=f1e445]
+        - generic [ref=f1e51]: 37,800 sessions · 74.4% reached the credits · 41:00 runtime
+      - generic [ref=f1e8]:
+        - img "Retention curve with scene bands" [ref=f1e9]:
+          - generic [ref=f1e446] [cursor=pointer]
+          - generic [ref=f1e447] [cursor=pointer]
+          - generic [ref=f1e448] [cursor=pointer]
+          - generic [ref=f1e449] [cursor=pointer]
+          - generic [ref=f1e450] [cursor=pointer]
+          - generic [ref=f1e451] [cursor=pointer]
+          - generic [ref=f1e452] [cursor=pointer]
+          - generic [ref=f1e453] [cursor=pointer]
+          - generic [ref=f1e454] [cursor=pointer]
+          - generic [ref=f1e455] [cursor=pointer]
+          - generic [ref=f1e456] [cursor=pointer]
+          - generic [ref=f1e457] [cursor=pointer]
+          - generic [ref=f1e458] [cursor=pointer]
+          - generic [ref=f1e459]: 100%
+          - generic [ref=f1e460]: 75%
+          - generic [ref=f1e461]: 50%
+          - generic [ref=f1e462]: 25%
+          - generic [ref=f1e710]: 0:00
+          - generic [ref=f1e711]: 5:00
+          - generic [ref=f1e712]: 10:00
+          - generic [ref=f1e713]: 15:00
+          - generic [ref=f1e714]: 20:00
+          - generic [ref=f1e715]: 25:00
+          - generic [ref=f1e716]: 30:00
+          - generic [ref=f1e717]: 35:00
+          - generic [ref=f1e718]: 40:00
+          - generic [ref=f1e719]: "1"
+          - generic [ref=f1e720]: "2"
+          - generic [ref=f1e721]: "3"
+          - generic [ref=f1e722]: "4"
+          - generic [ref=f1e723]: "5"
+          - generic [ref=f1e724]: "6"
+          - generic [ref=f1e725]: "7"
+          - generic [ref=f1e726]: "8"
+          - generic [ref=f1e727]: "9"
+          - generic [ref=f1e728]: "10"
+          - generic [ref=f1e729]: "11"
+          - generic [ref=f1e730]: "12"
+          - generic [ref=f1e731]: "13"
+        - generic [ref=f1e10]:
+          - generic [ref=f1e11]: viewers still watching
+          - generic [ref=f1e13]: rewinds (where people go back to)
+          - generic [ref=f1e15]: flagged by the analyst
+      - generic [ref=f1e17]: Hover the curve or pick a scene.
+      - generic [ref=f1e393]:
+        - button "0.2 1 · action · 0:00 EXT. OCEAN - DAWN" [ref=f1e733] [cursor=pointer]:
+          - generic [ref=f1e734]: "0.2"
+          - generic [ref=f1e735]: 1 · action · 0:00
+          - text: EXT. OCEAN - DAWN
+        - button "2.6 2 · credits · 2:10 TITLES" [ref=f1e736] [cursor=pointer]:
+          - generic [ref=f1e737]: "2.6"
+          - generic [ref=f1e738]: 2 · credits · 2:10
+          - text: TITLES
+        - button "1.5 3 · dialogue · 3:10 INT. KELLEHER HOUSE - DAY" [ref=f1e739] [cursor=pointer]:
+          - generic [ref=f1e740]: "1.5"
+          - generic [ref=f1e741]: 3 · dialogue · 3:10
+          - text: INT. KELLEHER HOUSE - DAY
+        - button "0.1 4 · action · 6:50 EXT. OCEAN - GIL'S BOAT - DAY" [ref=f1e742] [cursor=pointer]:
+          - generic [ref=f1e743]: "0.1"
+          - generic [ref=f1e744]: 4 · action · 6:50
+          - text: EXT. OCEAN - GIL'S BOAT - DAY
+        - button "0.5 5 · dialogue · 10:50 INT. SHERIFF'S SUBSTATION - DAY" [ref=f1e745] [cursor=pointer]:
+          - generic [ref=f1e746]: "0.5"
+          - generic [ref=f1e747]: 5 · dialogue · 10:50
+          - text: INT. SHERIFF'S SUBSTATION - DAY
+        - button "0.4 6 · dialogue · 14:10 INT. BELL FISHERIES - OFFICE - DAY" [ref=f1e748] [cursor=pointer]:
+          - generic [ref=f1e749]: "0.4"
+          - generic [ref=f1e750]: 6 · dialogue · 14:10
+          - text: INT. BELL FISHERIES - OFFICE - DAY
+        - button "0.8 7 · montage · 18:00 EXT. COASTAL ROAD - DAY" [ref=f1e751] [cursor=pointer]:
+          - generic [ref=f1e752]: "0.8"
+          - generic [ref=f1e753]: 7 · montage · 18:00
+          - text: EXT. COASTAL ROAD - DAY
+        - button "0.4 8 · dialogue · 21:30 INT. STATE FISHERIES OFFICE - DAY" [ref=f1e754] [cursor=pointer]:
+          - generic [ref=f1e755]: "0.4"
+          - generic [ref=f1e756]: 8 · dialogue · 21:30
+          - text: INT. STATE FISHERIES OFFICE - DAY
+        - button "0.4 9 · dialogue · 25:50 INT. DINER - NIGHT" [ref=f1e757] [cursor=pointer]:
+          - generic [ref=f1e758]: "0.4"
+          - generic [ref=f1e759]: 9 · dialogue · 25:50
+          - text: INT. DINER - NIGHT
+        - button "0.2 10 · action · 29:00 EXT. HARBOR - NIGHT" [ref=f1e760] [cursor=pointer]:
+          - generic [ref=f1e761]: "0.2"
+          - generic [ref=f1e762]: 10 · action · 29:00
+          - text: EXT. HARBOR - NIGHT
+        - button "0.4 11 · dialogue · 32:40 INT. KELLEHER HOUSE - NIGHT" [ref=f1e763] [cursor=pointer]:
+          - generic [ref=f1e764]: "0.4"
+          - generic [ref=f1e765]: 11 · dialogue · 32:40
+          - text: INT. KELLEHER HOUSE - NIGHT
+        - button "0.3 12 · reveal · 36:00 EXT. BREAKWATER - NIGHT" [ref=f1e766] [cursor=pointer]:
+          - generic [ref=f1e767]: "0.3"
+          - generic [ref=f1e768]: 12 · reveal · 36:00
+          - text: EXT. BREAKWATER - NIGHT
+        - button "35.3 13 · credits · 38:10 END CREDITS" [ref=f1e769] [cursor=pointer]:
+          - generic [ref=f1e770]: "35.3"
+          - generic [ref=f1e771]: 13 · credits · 38:10
+          - text: END CREDITS
+    - complementary [ref=f1e19]:
+      - generic [ref=f1e20]:
+        - generic [ref=f1e21]:
+          - generic [ref=f1e22]: retention room
+          - text: Ask why an episode loses people, what gets rewatched, or whether a drop is the story or the stream. Every answer shows the SQL it ran against ClickHouse.
+        - generic [ref=f1e439]: Why does this episode lose people?
+        - generic [ref=f1e440]:
+          - generic [ref=f1e441]:
+            - generic [ref=f1e442]: run_query
+            - text: via mcp-clickhouse
+          - generic [ref=f1e443]: SELECT * FROM retention.scene_completion WHERE episode = 4 ORDER BY loss_per_minute DESC LIMIT 5
+        - generic [ref=f1e772]:
+          - generic [ref=f1e773]:
+            - generic [ref=f1e774]: run_query
+            - text: via mcp-clickhouse
+          - generic [ref=f1e775]: WITH episode_4_retention AS ( SELECT second, retention FROM retention.retention_curve WHERE episode = 4 AND second BETWEEN 2050 AND 2590 ) SELECT second, retention - lead(retention, 60) OVER (ORDER BY second) AS retention_drop_60s FROM episode_4_retention ORDER BY retention_drop_60s DESC LIMIT 1;
+          - generic [ref=f1e776]: "{\"columns\": [\"second\", \"retention_drop_60s\"], \"rows\": [[2531, 0.6159313725490196]]}"
+        - generic [ref=f1e777]:
+          - generic [ref=f1e778]:
+            - generic [ref=f1e779]: run_query
+            - text: via mcp-clickhouse
+          - generic [ref=f1e780]: SELECT device, region, cdn, sum(exits) AS total_exits FROM retention.exits_by_second WHERE episode = 4 AND second BETWEEN 2531 AND 2591 GROUP BY device, region, cdn ORDER BY total_exits DESC LIMIT 10;
+          - generic [ref=f1e781]: "{\"columns\": [\"device\", \"region\", \"cdn\", \"total_exits\"], \"rows\": [[\"smart_tv\", \"NA\", \"edge-a\", 102], [\"smart_tv\", \"NA\", \"edge-b\", 80], [\"mobile\", \"NA\", \"edge-a\", 64], [\"smart_tv\", \"EU\", \"edge-a\", 57], [\"smart_tv\", \"NA\", \"edge-c\", 53], [\"mobile\", \"NA\", \"edge-b\", 50], [\"smart_tv\", \"EU\", \"edge-b\", 41], [\"mobile\", \"NA\", \"edge-c\", 35], [\"mobile\", \"EU\", \"edge-b\", 32], [\"web\", \"NA\", \"edge-a\", 31]]}"
+        - generic [ref=f1e782]:
+          - generic [ref=f1e783]:
+            - generic [ref=f1e784]: run_query
+            - text: via mcp-clickhouse
+          - generic [ref=f1e785]: SELECT minute, device, region, cdn, sum(rebuffers) AS total_rebuffers FROM retention.rebuffers_by_minute WHERE episode = 4 AND minute BETWEEN 42 AND 43 GROUP BY minute, device, region, cdn ORDER BY total_rebuffers DESC LIMIT 10;
+        - generic [ref=f1e786]:
+          - generic [ref=f1e787]:
+            - generic [ref=f1e788]: run_query
+            - text: via mcp-clickhouse
+          - generic [ref=f1e789]: SELECT scene_number, slugline, kind, summary, script_excerpt FROM retention.scenes WHERE episode = 4 AND scene_number IN (12, 13);
+        - generic [ref=f1e790]:
+          - generic [ref=f1e791]:
+            - generic [ref=f1e792]: run_query
+            - text: via mcp-clickhouse
+          - generic [ref=f1e793]: SELECT s.scene_number, s.slugline, s.summary, sum(sh.seeks) AS total_seeks FROM retention.seek_heatmap AS sh JOIN retention.scenes AS s ON sh.episode = s.episode AND sh.to_bucket * 10 BETWEEN s.start_sec AND s.end_sec WHERE sh.episode = 4 AND sh.backward = 1 AND sh.to_bucket > 0 GROUP BY s.scene_number, s.slugline, s.summary ORDER BY total_seeks DESC LIMIT 5;
+        - generic [ref=f1e794]:
+          - generic [ref=f1e795]: analyst
+          - paragraph [ref=f1e796]: Episode 4 loses viewers during a long exposition scene, dropping from 81% to 20% retention in the minute starting at 2531s in scene 13.
+          - paragraph [ref=f1e797]: This is a story problem. The audience drain is not isolated to any particular delivery segment (CDN, device, or region), and there is no spike in rebuffering that would indicate a technical fault. The drop-off happens right after a major reveal, suggesting the exposition that follows is the issue.
+          - paragraph [ref=f1e798]: "### The SceneThe drop-off occurs in scene 13, which comes directly after a confession in scene 12."
+          - list [ref=f1e799]:
+            - listitem [ref=f1e800]:
+              - text: "Scene 12:"
+              - code [ref=f1e801]: INT. KELLEHER HOUSE - PORCH - NIGHT
+              - text: (reveal)
+          - text: "- Summary: June confesses: she saw the boat that night from the porch. She saw two boats. She went back to bed. - Excerpt:"
+          - code [ref=f1e802]: "JUNE: I saw two boats. I saw his and I saw the other one and I went back to bed, Nora. I went back to bed."
+          - list [ref=f1e803]:
+            - listitem [ref=f1e804]:
+              - text: "Scene 13:"
+              - code [ref=f1e805]: INT. HARBORMASTER'S OFFICE - NIGHT
+              - text: (exposition)
+          - text: "- Summary: Gil lays out the entire dredging permit history: the 2019 application, the environmental review, the quota transfer clause, who signed what and when. - Excerpt:"
+          - code [ref=f1e806]: "GIL: The 2019 application was denied. Then in 2021 it comes back with a quota transfer clause nobody asked for. Now look at the environmental review — see the date? Same week the county changed assessors. And here —"
+          - paragraph [ref=f1e807]: "### Rewatch HotspotsInterestingly, the same scene that causes the drop-off is also the most rewatched part of the episode. This suggests that while some viewers are leaving, others are trying to grasp the details of the permit history. Other rewatched scenes involve the dashcam footage and the identification of the truck."
+          - list [ref=f1e808]:
+            - listitem [ref=f1e809]: "Scene 13: Gil's explanation of the dredging permit history."
+            - listitem [ref=f1e810]: "Scene 4: Tess gives Nora the dashcam SD card."
+            - listitem [ref=f1e811]: "Scene 6: Gil identifies the truck as belonging to the sheriff's office."
+          - text: "### Data"
+        - generic [ref=f1e812]:
+          - generic [ref=f1e813]: analyst
+          - generic [ref=f1e814]: SELECT * FROM retention.scene_completion WHERE episode = 4 ORDER BY loss_per_minute DESC LIMIT 5
+        - generic [ref=f1e815]:
+          - generic [ref=f1e816]: analyst
+          - paragraph [ref=f1e817]
+        - generic [ref=f1e818]:
+          - generic [ref=f1e819]: analyst
+          - generic [ref=f1e820]: WITH episode_4_retention AS ( SELECT second, retention FROM retention.retention_curve WHERE episode = 4 AND second BETWEEN 2050 AND 2590 ) SELECT second, retention - lead(retention, 60) OVER (ORDER BY second) AS retention_drop_60s FROM episode_4_retention ORDER BY retention_drop_60s DESC LIMIT 1;
+        - generic [ref=f1e821]:
+          - generic [ref=f1e822]: analyst
+          - paragraph [ref=f1e823]
+        - generic [ref=f1e824]:
+          - generic [ref=f1e825]: analyst
+          - generic [ref=f1e826]: SELECT device, region, cdn, sum(exits) AS total_exits FROM retention.exits_by_second WHERE episode = 4 AND second BETWEEN 2531 AND 2591 GROUP BY device, region, cdn ORDER BY total_exits DESC LIMIT 10;
+        - generic [ref=f1e827]:
+          - generic [ref=f1e828]: analyst
+          - paragraph [ref=f1e829]
+        - generic [ref=f1e830]:
+          - generic [ref=f1e831]: analyst
+          - generic [ref=f1e832]: SELECT minute, device, region, cdn, sum(rebuffers) AS total_rebuffers FROM retention.rebuffers_by_minute WHERE episode = 4 AND minute BETWEEN 42 AND 43 GROUP BY minute, device, region, cdn ORDER BY total_rebuffers DESC LIMIT 10;
+        - generic [ref=f1e833]:
+          - generic [ref=f1e834]: analyst
+          - paragraph [ref=f1e835]
+        - generic [ref=f1e836]:
+          - generic [ref=f1e837]: analyst
+          - generic [ref=f1e838]: SELECT scene_number, slugline, kind, summary, script_excerpt FROM retention.scenes WHERE episode = 4 AND scene_number IN (12, 13);
+        - generic [ref=f1e839]:
+          - generic [ref=f1e840]: analyst
+          - paragraph [ref=f1e841]
+        - generic [ref=f1e842]:
+          - generic [ref=f1e843]: analyst
+          - generic [ref=f1e844]: SELECT s.scene_number, s.slugline, s.summary, sum(sh.seeks) AS total_seeks FROM retention.seek_heatmap AS sh JOIN retention.scenes AS s ON sh.episode = s.episode AND sh.to_bucket * 10 BETWEEN s.start_sec AND s.end_sec WHERE sh.episode = 4 AND sh.backward = 1 AND sh.to_bucket > 0 GROUP BY s.scene_number, s.slugline, s.summary ORDER BY total_seeks DESC LIMIT 5;
+        - generic [ref=f1e845]:
+          - generic [ref=f1e846]: editor
+          - paragraph [ref=f1e847]: In Episode 4, we're losing the audience in the harbormaster's office. During Gil's one-minute explanation of the dredging permits in scene 13, retention plummets from 81% to 20%. The data confirms this is a story problem, not a technical delivery issue.
+          - paragraph [ref=f1e848]: The drop happens right after June's powerful porch confession. This is a classic case of a dry exposition scene killing the momentum of a major reveal. The audience is primed for emotional fallout, and we give them administrative history instead.
+          - paragraph [ref=f1e849]: We have a couple of options. We can recut the scene, trimming Gil’s monologue by 30-40 seconds to focus only on the key players and the illegal clause. Or, we could break up the information, moving less critical details to a later beat. For next season, this is a clear lesson in weaving in discovery rather than dumping it.
+          - paragraph [ref=f1e850]: Interestingly, the permit scene is also a rewatch hotspot, meaning the information is important but the delivery is too dense. The audience also loves the dashcam and truck identification scenes; let's use the truck reveal for the "previously on".
+          - paragraph [ref=f1e851]: My first move would be to recut the scene.
+        - generic [ref=f1e852]: Is the drop at 11:30 the story or the stream?
+        - generic [ref=f1e853]: analyst querying ClickHouse...
+      - generic [ref=f1e23]:
+        - generic [ref=f1e24]:
+          - button "Why does this episode lose people?" [ref=f1e25] [cursor=pointer]
+          - button "What do viewers rewatch most in this episode?" [ref=f1e26] [cursor=pointer]
+          - button "Is the drop at the top of the episode the story or the stream?" [ref=f1e27] [cursor=pointer]
+          - button "Which episode has the worst mid-episode drop this season?" [ref=f1e28] [cursor=pointer]
+          - button "How many finishers missed the post-credits scene in episode 8?" [ref=f1e29] [cursor=pointer]
+        - generic [ref=f1e30]:
+          - textbox "Why does this episode lose people?" [ref=f1e31]
+          - button "Ask" [disabled] [ref=f1e32]

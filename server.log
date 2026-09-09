@@ -1,0 +1,788 @@
+/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.PLUGGABLE_AUTH is enabled.
+  check_feature_enabled()
+INFO:     Started server process [81150]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8081 (Press CTRL+C to quit)
+INFO:     127.0.0.1:59889 - "GET /healthz HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59912 - "GET /api/episodes HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59914 - "GET /api/episodes/4/curve HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59916 - "GET /api/episodes/4/seeks HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59984 - "POST /api/chat HTTP/1.1" 200 OK
+/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/google/adk/tools/mcp_tool/mcp_toolset.py:400: UserWarning: [EXPERIMENTAL] feature FeatureName._MCP_GRACEFUL_ERROR_HANDLING is enabled.
+  session = await self._mcp_session_manager.create_session(
+2026-09-09 23:24:27,620 - mcp-clickhouse - INFO - ClickHouse tools registered
+
+
+╭──────────────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│                                                                              │
+│                         ▄▀▀ ▄▀█ █▀▀ ▀█▀ █▀▄▀█ █▀▀ █▀█                        │
+│                         █▀  █▀█ ▄▄█  █  █ ▀ █ █▄▄ █▀▀                        │
+│                                                                              │
+│                                                                              │
+│                                                                              │
+│                                FastMCP 4.0.3                                 │
+│                            https://gofastmcp.com                             │
+│                                                                              │
+│                  🖥  Server:      mcp-clickhouse, 0.6.0                       │
+│                  🚀 Deploy free: https://horizon.prefect.io                  │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+
+[09/09/26 23:24:27] INFO     Starting MCP server                transport.py:242
+                             'mcp-clickhouse' with transport                    
+                             'stdio'                                            
+/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.
+  check_feature_enabled()
+/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/google/adk/models/llm_request.py:298: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.
+  declaration = tool._get_declaration()
+2026-09-09 23:24:34,604 - mcp-clickhouse - INFO - Executing query: SELECT
+    scene_number,
+    slugline,
+    kind,
+    start_sec,
+    end_sec,
+    loss_per_minute
+FROM retention.scene_completion
+WHERE
+    episode = 4
+    AND kind != 'credits'
+ORDER BY loss_per_minute DESC
+LIMIT 5
+
+2026-09-09 23:24:34,605 - mcp-clickhouse - INFO - Creating ClickHouse client connection to lnh7180d1o.us-central1.gcp.clickhouse.cloud:8443 as default (secure=True, verify=True, connect_timeout=30s, send_receive_timeout=120s)
+2026-09-09 23:24:35,850 - mcp-clickhouse - INFO - Successfully connected to ClickHouse server version 26.2.1.641
+2026-09-09 23:24:36,166 - mcp-clickhouse - INFO - Query 092b5256-bc9a-442f-aabd-66869185d61d returned 5 rows
+2026-09-09 23:24:40,730 - mcp-clickhouse - INFO - Executing query: WITH episode_retention AS (
+    SELECT
+        second,
+        retention
+    FROM retention.retention_curve
+    WHERE episode = 4
+)
+SELECT
+    second,
+    retention - lag(retention, 60) OVER (ORDER BY second) AS retention_drop
+FROM episode_retention
+WHERE second BETWEEN 2050 AND 2590
+ORDER BY retention_drop
+LIMIT 1;
+
+2026-09-09 23:24:41,061 - mcp-clickhouse - INFO - Query e48fc2ff-fc4d-4323-adc8-0ec402369552 returned 1 rows
+2026-09-09 23:24:45,515 - mcp-clickhouse - INFO - Executing query: SELECT
+    device,
+    region,
+    cdn,
+    sum(exits) AS total_exits
+FROM retention.exits_by_second
+WHERE
+    episode = 4
+    AND second BETWEEN 2529 AND 2589
+GROUP BY
+    device,
+    region,
+    cdn
+ORDER BY total_exits DESC
+LIMIT 10
+
+2026-09-09 23:24:45,785 - mcp-clickhouse - INFO - Query dc751345-8e00-4a39-a18f-6989762e1035 returned 10 rows
+2026-09-09 23:24:50,569 - mcp-clickhouse - INFO - Executing query: SELECT
+    minute,
+    device,
+    region,
+    cdn,
+    sum(rebuffers) AS total_rebuffers
+FROM retention.rebuffers_by_minute
+WHERE
+    episode = 4
+    AND minute IN (42, 43)
+GROUP BY
+    minute,
+    device,
+    region,
+    cdn
+ORDER BY total_rebuffers DESC
+LIMIT 10
+
+2026-09-09 23:24:50,839 - mcp-clickhouse - INFO - Query 055bfec2-ad80-4d4f-8da4-39d6d36cb1db returned 10 rows
+2026-09-09 23:24:55,375 - mcp-clickhouse - INFO - Executing query: SELECT
+    scene_number,
+    slugline,
+    kind,
+    summary,
+    script_excerpt
+FROM retention.scenes
+WHERE
+    episode = 4
+    AND scene_number IN (12, 13)
+ORDER BY scene_number
+
+2026-09-09 23:24:55,648 - mcp-clickhouse - INFO - Query 95c4ab53-a5e0-4c69-8e8f-a634f6b6aff3 returned 2 rows
+2026-09-09 23:25:02,063 - mcp-clickhouse - INFO - Executing query: SELECT
+    s.scene_number,
+    s.slugline,
+    s.summary,
+    sum(h.seeks) AS total_seeks
+FROM retention.seek_heatmap AS h
+JOIN retention.scenes AS s ON h.episode = s.episode AND h.to_bucket * 10 BETWEEN s.start_sec AND s.end_sec
+WHERE
+    h.episode = 4
+    AND h.backward = 1
+    AND h.to_bucket > 0
+GROUP BY
+    s.scene_number,
+    s.slugline,
+    s.summary
+ORDER BY total_seeks DESC
+LIMIT 5
+
+2026-09-09 23:25:02,335 - mcp-clickhouse - INFO - Query d2e0e1a6-ae70-48ec-a53e-4514ecbe1b8b returned 5 rows
+Direct use of automatic function calling (AFC) in AsyncModels.generate_content is not recommended. Instead, we recommend to use AFC in AsyncChat.send_message. Similarly, direct use of AFC in AsyncModels.generate_content_stream is not recommended. Instead, we recommend to use AFC in AsyncChat.send_message_stream.
+INFO:     127.0.0.1:60190 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60193 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:60190 - "GET /api/episodes HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60190 - "GET /api/episodes/4/curve HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 422, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/applications.py", line 1163, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/applications.py", line 96, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 1281, in handle
+    await super().handle(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/routing.py", line 280, in handle
+    await self.app(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 352, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/app/main.py", line 86, in curve
+    pts = await asyncio.to_thread(
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/manasnikam/.pyenv/versions/3.14.2/lib/python3.14/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/manasnikam/.pyenv/versions/3.14.2/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/Users/manasnikam/.pyenv/versions/3.14.2/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/app/main.py", line 56, in q
+    res = ch().query(sql, parameters=params or {})
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/clickhouse_connect/driver/client.py", line 464, in query
+    return self._query_with_context(query_context)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/clickhouse_connect/driver/_backendclient.py", line 51, in _query_with_context
+    execution = self._backend.execute_query(context, runtime, self._prep_query(context))
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/clickhouse_connect/driver/_backend/http_sync.py", line 157, in execute_query
+    response = self.request(
+        plan.body if plan.body is not None else b"",
+    ...<5 lines>...
+        server_wait=not context.streaming,
+    )
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/clickhouse_connect/driver/_backend/http_sync.py", line 323, in request
+    raise ProgrammingError(
+    ...<2 lines>...
+    )
+clickhouse_connect.driver.exceptions.ProgrammingError: Attempt to execute concurrent queries within the same session. Please use a separate client instance per thread/process.
+INFO:     127.0.0.1:60193 - "GET /api/episodes/4/seeks HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60725 - "GET /healthz HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60889 - "GET /api/episodes HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60892 - "GET /api/episodes/4/curve HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60912 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60914 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:60912 - "GET /api/episodes HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60912 - "GET /api/episodes/4/curve HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 422, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/applications.py", line 1163, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/applications.py", line 96, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 1281, in handle
+    await super().handle(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/routing.py", line 280, in handle
+    await self.app(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 352, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/app/main.py", line 86, in curve
+    pts = await asyncio.to_thread(
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/manasnikam/.pyenv/versions/3.14.2/lib/python3.14/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/manasnikam/.pyenv/versions/3.14.2/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/Users/manasnikam/.pyenv/versions/3.14.2/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/app/main.py", line 56, in q
+    res = ch().query(sql, parameters=params or {})
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/clickhouse_connect/driver/client.py", line 464, in query
+    return self._query_with_context(query_context)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/clickhouse_connect/driver/_backendclient.py", line 51, in _query_with_context
+    execution = self._backend.execute_query(context, runtime, self._prep_query(context))
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/clickhouse_connect/driver/_backend/http_sync.py", line 157, in execute_query
+    response = self.request(
+        plan.body if plan.body is not None else b"",
+    ...<5 lines>...
+        server_wait=not context.streaming,
+    )
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/clickhouse_connect/driver/_backend/http_sync.py", line 323, in request
+    raise ProgrammingError(
+    ...<2 lines>...
+    )
+clickhouse_connect.driver.exceptions.ProgrammingError: Attempt to execute concurrent queries within the same session. Please use a separate client instance per thread/process.
+INFO:     127.0.0.1:60914 - "GET /api/episodes/4/seeks HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60943 - "GET /api/episodes HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60945 - "GET /api/episodes/4/seeks HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 422, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/applications.py", line 1163, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/applications.py", line 96, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 1281, in handle
+    await super().handle(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/routing.py", line 280, in handle
+    await self.app(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 352, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/app/main.py", line 115, in seeks
+    return await asyncio.to_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/Users/manasnikam/.pyenv/versions/3.14.2/lib/python3.14/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/manasnikam/.pyenv/versions/3.14.2/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/Users/manasnikam/.pyenv/versions/3.14.2/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/app/main.py", line 56, in q
+    res = ch().query(sql, parameters=params or {})
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/clickhouse_connect/driver/client.py", line 464, in query
+    return self._query_with_context(query_context)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/clickhouse_connect/driver/_backendclient.py", line 51, in _query_with_context
+    execution = self._backend.execute_query(context, runtime, self._prep_query(context))
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/clickhouse_connect/driver/_backend/http_sync.py", line 157, in execute_query
+    response = self.request(
+        plan.body if plan.body is not None else b"",
+    ...<5 lines>...
+        server_wait=not context.streaming,
+    )
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/clickhouse_connect/driver/_backend/http_sync.py", line 323, in request
+    raise ProgrammingError(
+    ...<2 lines>...
+    )
+clickhouse_connect.driver.exceptions.ProgrammingError: Attempt to execute concurrent queries within the same session. Please use a separate client instance per thread/process.
+INFO:     127.0.0.1:60943 - "GET /api/episodes/4/curve HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60970 - "GET /api/episodes/4/curve HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60973 - "GET /api/episodes/4/seeks HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60977 - "GET /api/episodes/4/curve HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60981 - "GET /api/episodes/4/seeks HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60984 - "GET /api/episodes/4/curve HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60987 - "GET /api/episodes/4/seeks HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61025 - "GET /api/episodes/4/curve HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61025 - "GET /api/episodes/4/seeks HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61116 - "POST /api/chat HTTP/1.1" 200 OK
+2026-09-09 23:51:07,456 - mcp-clickhouse - INFO - Executing query: SELECT * FROM retention.scene_completion WHERE episode = 4 ORDER BY loss_per_minute DESC LIMIT 5
+2026-09-09 23:51:08,563 - mcp-clickhouse - INFO - Query 492d72f6-9c27-4b97-aee0-619ff0ed86d6 returned 5 rows
+2026-09-09 23:51:13,258 - mcp-clickhouse - INFO - Executing query: WITH episode_4_retention AS (
+  SELECT
+    second,
+    retention
+  FROM retention.retention_curve
+  WHERE
+    episode = 4
+    AND second BETWEEN 2050 AND 2590
+)
+SELECT
+  second,
+  retention - lead(retention, 60) OVER (ORDER BY second) AS retention_drop_60s
+FROM episode_4_retention
+ORDER BY
+  retention_drop_60s DESC
+LIMIT 1;
+2026-09-09 23:51:13,533 - mcp-clickhouse - INFO - Query a20d54a5-6c95-4e12-9467-8e8e3c6baf30 returned 1 rows
+2026-09-09 23:51:17,501 - mcp-clickhouse - INFO - Executing query: SELECT
+  device,
+  region,
+  cdn,
+  sum(exits) AS total_exits
+FROM retention.exits_by_second
+WHERE
+  episode = 4
+  AND second BETWEEN 2531 AND 2591
+GROUP BY
+  device,
+  region,
+  cdn
+ORDER BY
+  total_exits DESC
+LIMIT 10;
+2026-09-09 23:51:17,764 - mcp-clickhouse - INFO - Query a5019d6e-7bdd-4a55-8f97-f3c8495852c2 returned 10 rows
+2026-09-09 23:51:22,146 - mcp-clickhouse - INFO - Executing query: SELECT
+  minute,
+  device,
+  region,
+  cdn,
+  sum(rebuffers) AS total_rebuffers
+FROM retention.rebuffers_by_minute
+WHERE
+  episode = 4
+  AND minute BETWEEN 42 AND 43
+GROUP BY
+  minute,
+  device,
+  region,
+  cdn
+ORDER BY
+  total_rebuffers DESC
+LIMIT 10;
+2026-09-09 23:51:22,410 - mcp-clickhouse - INFO - Query ff79f1ea-5477-43ad-b9f3-2f8904cb38a4 returned 10 rows
+2026-09-09 23:51:25,766 - mcp-clickhouse - INFO - Executing query: SELECT
+  scene_number,
+  slugline,
+  kind,
+  summary,
+  script_excerpt
+FROM retention.scenes
+WHERE
+  episode = 4
+  AND scene_number IN (12, 13);
+2026-09-09 23:51:26,034 - mcp-clickhouse - INFO - Query 2b43a581-313e-4a70-88d2-ad3977bda6b2 returned 2 rows
+2026-09-09 23:51:30,333 - mcp-clickhouse - INFO - Executing query: SELECT
+  s.scene_number,
+  s.slugline,
+  s.summary,
+  sum(sh.seeks) AS total_seeks
+FROM retention.seek_heatmap AS sh
+JOIN retention.scenes AS s
+  ON sh.episode = s.episode AND sh.to_bucket * 10 BETWEEN s.start_sec AND s.end_sec
+WHERE
+  sh.episode = 4
+  AND sh.backward = 1
+  AND sh.to_bucket > 0
+GROUP BY
+  s.scene_number,
+  s.slugline,
+  s.summary
+ORDER BY
+  total_seeks DESC
+LIMIT 5;
+2026-09-09 23:51:30,599 - mcp-clickhouse - INFO - Query 1e98caee-e92b-44e6-9645-9d5d5d1d9ae7 returned 5 rows
+INFO:     127.0.0.1:61331 - "GET /api/episodes/5/curve HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61331 - "GET /api/episodes/5/seeks HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61364 - "POST /api/chat HTTP/1.1" 200 OK
+2026-09-09 23:54:57,013 - mcp-clickhouse - INFO - Executing query: SELECT * FROM retention.scene_completion WHERE episode = 5 ORDER BY loss_per_minute DESC LIMIT 5
+2026-09-09 23:54:58,005 - mcp-clickhouse - INFO - Query bd728b5f-9719-40a0-9556-6ddf23fd1f9a returned 5 rows
+2026-09-09 23:55:03,034 - mcp-clickhouse - INFO - Executing query: WITH episode_5_retention AS (
+  SELECT
+    second,
+    retention
+  FROM retention.retention_curve
+  WHERE
+    episode = 5
+    AND second BETWEEN 650 AND 850
+)
+SELECT
+  second,
+  retention - lead(retention, 60) OVER (ORDER BY second) AS retention_drop_60s
+FROM episode_5_retention
+ORDER BY
+  retention_drop_60s DESC
+LIMIT 1;
+2026-09-09 23:55:03,314 - mcp-clickhouse - INFO - Query c82af05c-36b5-4564-b2ce-eda4c00fa0d2 returned 1 rows
+2026-09-09 23:55:09,934 - mcp-clickhouse - INFO - Executing query: WITH episode_5_retention AS (
+  SELECT
+    second,
+    retention
+  FROM retention.retention_curve
+  WHERE
+    episode = 5
+    AND second BETWEEN 650 AND 850
+)
+SELECT
+  second,
+  retention AS retention_start,
+  lead(retention, 60) OVER (ORDER BY second) AS retention_end,
+  retention - lead(retention, 60) OVER (ORDER BY second) AS retention_drop_60s
+FROM episode_5_retention
+ORDER BY
+  retention_drop_60s DESC
+LIMIT 1;
+2026-09-09 23:55:10,223 - mcp-clickhouse - INFO - Query dd3912e7-175a-438e-8dcf-d1c37e949d3b returned 1 rows
+2026-09-09 23:55:16,302 - mcp-clickhouse - INFO - Executing query: SELECT
+  device,
+  region,
+  cdn,
+  sum(exits) AS total_exits
+FROM retention.exits_by_second
+WHERE
+  episode = 5
+  AND second BETWEEN 792 AND 852
+GROUP BY
+  device,
+  region,
+  cdn
+ORDER BY
+  total_exits DESC
+LIMIT 10;
+2026-09-09 23:55:16,569 - mcp-clickhouse - INFO - Query ae7512ea-fed4-43df-b5f0-68fd87c4bba7 returned 10 rows
+2026-09-09 23:55:21,945 - mcp-clickhouse - INFO - Executing query: SELECT
+  minute,
+  device,
+  region,
+  cdn,
+  sum(rebuffers) AS total_rebuffers
+FROM retention.rebuffers_by_minute
+WHERE
+  episode = 5
+  AND minute IN (13, 14)
+GROUP BY
+  minute,
+  device,
+  region,
+  cdn
+ORDER BY
+  total_rebuffers DESC
+LIMIT 10;
+2026-09-09 23:55:22,213 - mcp-clickhouse - INFO - Query eee2c7b1-d55f-4204-9576-163c3a26f7ec returned 10 rows
+2026-09-09 23:55:26,004 - mcp-clickhouse - INFO - Executing query: SELECT
+  scene_number,
+  slugline,
+  kind,
+  summary,
+  script_excerpt
+FROM retention.scenes
+WHERE
+  episode = 5
+  AND scene_number IN (4, 5);
+2026-09-09 23:55:26,268 - mcp-clickhouse - INFO - Query b92a7091-de22-40c7-92b3-514c6b79c9f6 returned 2 rows
+2026-09-09 23:55:32,148 - mcp-clickhouse - INFO - Executing query: SELECT
+  s.scene_number,
+  s.slugline,
+  s.summary,
+  sum(sh.seeks) AS total_seeks
+FROM retention.seek_heatmap AS sh
+JOIN retention.scenes AS s
+  ON sh.episode = s.episode AND sh.to_bucket * 10 BETWEEN s.start_sec AND s.end_sec
+WHERE
+  sh.episode = 5
+  AND sh.backward = 1
+  AND sh.to_bucket > 0
+GROUP BY
+  s.scene_number,
+  s.slugline,
+  s.summary
+ORDER BY
+  total_seeks DESC
+LIMIT 5;
+2026-09-09 23:55:32,415 - mcp-clickhouse - INFO - Query 196ed94e-252c-4798-9eda-5a8609c07db6 returned 5 rows
+INFO:     127.0.0.1:61471 - "POST /api/chat HTTP/1.1" 200 OK
+2026-09-09 23:56:52,990 - mcp-clickhouse - INFO - Executing query: WITH episode_5_retention AS (
+  SELECT
+    second,
+    retention
+  FROM retention.retention_curve
+  WHERE
+    episode = 5
+    AND second BETWEEN 690 AND 750
+)
+SELECT
+  second,
+  retention AS retention_start,
+  lead(retention, 60) OVER (ORDER BY second) AS retention_end,
+  retention - lead(retention, 60) OVER (ORDER BY second) AS retention_drop_60s
+FROM episode_5_retention
+WHERE
+  second BETWEEN 690 AND 720
+ORDER BY
+  retention_drop_60s DESC
+LIMIT 1;
+2026-09-09 23:56:53,824 - mcp-clickhouse - INFO - Query 93ddf258-d469-4687-82fc-9bb9e6e702bc returned 1 rows
+2026-09-09 23:56:57,325 - mcp-clickhouse - INFO - Executing query: SELECT
+  device,
+  region,
+  cdn,
+  sum(exits) AS total_exits
+FROM retention.exits_by_second
+WHERE
+  episode = 5
+  AND second BETWEEN 690 AND 750
+GROUP BY
+  device,
+  region,
+  cdn
+ORDER BY
+  total_exits DESC
+LIMIT 10;
+2026-09-09 23:56:57,595 - mcp-clickhouse - INFO - Query 91d04a1b-e4a1-4062-9f56-787dbe768394 returned 10 rows
+2026-09-09 23:57:00,174 - mcp-clickhouse - INFO - Executing query: SELECT
+  minute,
+  device,
+  region,
+  cdn,
+  sum(rebuffers) AS total_rebuffers
+FROM retention.rebuffers_by_minute
+WHERE
+  episode = 5
+  AND minute IN (11, 12)
+GROUP BY
+  minute,
+  device,
+  region,
+  cdn
+ORDER BY
+  total_rebuffers DESC
+LIMIT 10;
+2026-09-09 23:57:00,442 - mcp-clickhouse - INFO - Query d5eeb174-78ff-490d-a9ec-2a317199d426 returned 10 rows
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [81150]
+/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.PLUGGABLE_AUTH is enabled.
+  check_feature_enabled()
+INFO:     Started server process [74622]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8081 (Press CTRL+C to quit)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [74622]
+/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.PLUGGABLE_AUTH is enabled.
+  check_feature_enabled()
+INFO:     Started server process [88076]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8081 (Press CTRL+C to quit)
+INFO:     127.0.0.1:62106 - "GET /api/episodes HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64230 - "GET /api/episodes/4/curve HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64239 - "GET /api/episodes/4/curve HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64245 - "GET /api/episodes HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64247 - "GET /api/episodes/4/seeks HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 422, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/applications.py", line 1163, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/applications.py", line 96, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 1281, in handle
+    await super().handle(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/routing.py", line 280, in handle
+    await self.app(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 352, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/app/main.py", line 115, in seeks
+    return await asyncio.to_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/Users/manasnikam/.pyenv/versions/3.14.2/lib/python3.14/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/manasnikam/.pyenv/versions/3.14.2/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/Users/manasnikam/.pyenv/versions/3.14.2/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/app/main.py", line 56, in q
+    res = ch().query(sql, parameters=params or {})
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/clickhouse_connect/driver/client.py", line 464, in query
+    return self._query_with_context(query_context)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/clickhouse_connect/driver/_backendclient.py", line 51, in _query_with_context
+    execution = self._backend.execute_query(context, runtime, self._prep_query(context))
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/clickhouse_connect/driver/_backend/http_sync.py", line 157, in execute_query
+    response = self.request(
+        plan.body if plan.body is not None else b"",
+    ...<5 lines>...
+        server_wait=not context.streaming,
+    )
+  File "/Users/manasnikam/project/hackathon/agentic-cinema/retention-room/.venv/lib/python3.14/site-packages/clickhouse_connect/driver/_backend/http_sync.py", line 323, in request
+    raise ProgrammingError(
+    ...<2 lines>...
+    )
+clickhouse_connect.driver.exceptions.ProgrammingError: Attempt to execute concurrent queries within the same session. Please use a separate client instance per thread/process.
+INFO:     127.0.0.1:64245 - "GET /api/episodes/4/curve HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64255 - "GET /api/episodes HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64255 - "GET /api/episodes/4/curve HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64255 - "GET /api/episodes/4/seeks HTTP/1.1" 200 OK

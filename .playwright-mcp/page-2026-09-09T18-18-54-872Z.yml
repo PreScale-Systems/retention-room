@@ -1,0 +1,28 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]: RETENTION ROOMCold Harbor · season 1
+    - navigation
+  - main [ref=e4]:
+    - generic [ref=e5]:
+      - heading "—" [level=1] [ref=e7]
+      - generic [ref=e8]:
+        - img "Retention curve with scene bands" [ref=e9]
+        - generic [ref=e10]:
+          - generic [ref=e11]: viewers still watching
+          - generic [ref=e13]: rewinds (where people go back to)
+          - generic [ref=e15]: flagged by the analyst
+      - generic [ref=e17]: Hover the curve or pick a scene.
+    - complementary [ref=e19]:
+      - generic [ref=e21]:
+        - generic [ref=e22]: retention room
+        - text: Ask why an episode loses people, what gets rewatched, or whether a drop is the story or the stream. Every answer shows the SQL it ran against ClickHouse.
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - button "Why does this episode lose people?" [ref=e25] [cursor=pointer]
+          - button "What do viewers rewatch most in this episode?" [ref=e26] [cursor=pointer]
+          - button "Is the drop at the top of the episode the story or the stream?" [ref=e27] [cursor=pointer]
+          - button "Which episode has the worst mid-episode drop this season?" [ref=e28] [cursor=pointer]
+          - button "How many finishers missed the post-credits scene in episode 8?" [ref=e29] [cursor=pointer]
+        - generic [ref=e30]:
+          - textbox "Why does this episode lose people?" [ref=e31]
+          - button "Ask" [ref=e32] [cursor=pointer]

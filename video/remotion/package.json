@@ -1,0 +1,24 @@
+{
+  "name": "retention-room-video",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Remotion project for the Retention Room hackathon demo video",
+  "scripts": {
+    "sync": "node sync-assets.mjs",
+    "dev": "npm run sync && remotion studio",
+    "render": "npm run sync && remotion render Main ../out/final.mp4"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.523",
+    "@remotion/google-fonts": "^4.0.523",
+    "@remotion/media-utils": "4.0.523",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "remotion": "4.0.523"
+  },
+  "devDependencies": {
+    "@types/react": "19.0.0",
+    "@types/web": "0.0.166",
+    "typescript": "5.8.2"
+  }
+}
